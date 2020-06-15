@@ -32,12 +32,14 @@ namespace NUnitTestCabInvoiceGenerator
         }
 
         [Test]
-        public void GivenMultipleRides_ShouldReturnTotalFare()
+        public void GivenMultipleRides_ShouldReturnInvoiceSummary()
         {
             Ride[] rides = { new Ride(2.0,5),
-                            new Ride(0.1,1)};
-            double fare = invoiceGenerator.CalculateFare(rides);
-            Assert.AreEqual(30, fare);
+                             new Ride(0.1,1)
+                            };
+            InvoiceSummary summary = invoiceGenerator.CalculateFare(rides);
+            InvoiceSummary expectedInvoiceSummary= new InvoiceSummary(2, 30.0);
+            Assert.AreEqual(expectedInvoiceSummary, summary);
         }
 
     }

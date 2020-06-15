@@ -16,14 +16,14 @@ namespace CabInvoiceGenerator
             return Math.Max(totalFare,MinimumFare);
         }
 
-        public double CalculateFare(Ride[] rides)
+        public InvoiceSummary CalculateFare(Ride[] rides)
         {
             double totalFare = 0;
             foreach(Ride ride in rides)
             {
                 totalFare += this.CalculateFare(ride.distance, ride.time);
             }
-            return totalFare;
+            return new InvoiceSummary(rides.Length,totalFare);
         }
     }
 }
