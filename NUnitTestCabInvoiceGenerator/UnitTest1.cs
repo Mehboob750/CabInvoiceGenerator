@@ -5,12 +5,12 @@ namespace NUnitTestCabInvoiceGenerator
 {
     public class Tests
     {
-        public InvoiceGenerator invoiceGenerator = null;
+        public InvoiceService invoiceService = null;
 
         [SetUp]
         public void Setup()
         {
-            invoiceGenerator = new InvoiceGenerator();
+            invoiceService = new InvoiceService();
         }
 
         [Test]
@@ -18,7 +18,7 @@ namespace NUnitTestCabInvoiceGenerator
         {
             double distance = 2.0;
             int time = 5;
-            double fare = invoiceGenerator.CalculateFare(distance,time);
+            double fare = invoiceService.CalculateFare(distance,time);
             Assert.AreEqual(25, fare);
         }
 
@@ -27,7 +27,7 @@ namespace NUnitTestCabInvoiceGenerator
         {
             double distance = 0.1;
             int time = 1;
-            double fare = invoiceGenerator.CalculateFare(distance, time);
+            double fare = invoiceService.CalculateFare(distance, time);
             Assert.AreEqual(5, fare);
         }
 
@@ -37,10 +37,22 @@ namespace NUnitTestCabInvoiceGenerator
             Ride[] rides = { new Ride(2.0,5),
                              new Ride(0.1,1)
                             };
-            InvoiceSummary summary = invoiceGenerator.CalculateFare(rides);
+            InvoiceSummary summary = invoiceService.CalculateFare(rides);
             InvoiceSummary expectedInvoiceSummary= new InvoiceSummary(2, 30.0);
             Assert.AreEqual(expectedInvoiceSummary, summary);
         }
 
+        [Test]
+        public void GivenUserIdAndRides_ShouldReturnInvoiceSummary()
+        {
+            string userId = "abc@gmail.com";
+            Ride[] rides = { new Ride(2.0,5),
+                             new Ride(0.1,1)
+                            };
+            invoiceService.AddRides(userId, rides);
+            InvoiceSummary summary = invoiceService.GetInvoiceSummary(userId);
+            InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30.0);
+            Assert.AreEqual(expectedInvoiceSummary, summary);
+        }
     }
 }
