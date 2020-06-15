@@ -13,9 +13,7 @@ namespace CabInvoiceGenerator
         public double CalculateFare(double distance, int time)
         {
             double totalFare = distance * MinimumCostPerKiloMeter + time * CostPerTime;
-            if (totalFare < MinimumFare)
-                return MinimumFare;
-            return totalFare;
+            return Math.Max(totalFare,MinimumFare);
         }
 
         public double CalculateFare(Ride[] rides)
