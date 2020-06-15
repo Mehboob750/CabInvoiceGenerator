@@ -5,15 +5,17 @@ namespace NUnitTestCabInvoiceGenerator
 {
     public class Tests
     {
+        public InvoiceGenerator invoiceGenerator = null;
+
         [SetUp]
         public void Setup()
         {
+            invoiceGenerator = new InvoiceGenerator();
         }
 
         [Test]
         public void GivenDistanceAndTime_ShouldReturnTotalFare()
         {
-            InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
             double distance = 2.0;
             int time = 5;
             double fare = invoiceGenerator.CalculateFare(distance,time);
@@ -23,11 +25,12 @@ namespace NUnitTestCabInvoiceGenerator
         [Test]
         public void GivenLessDistanceAndTime_ShouldReturnMinimumFare()
         {
-            InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
             double distance = 0.1;
             int time = 1;
             double fare = invoiceGenerator.CalculateFare(distance, time);
             Assert.AreEqual(5, fare);
         }
+
+        
     }
 }
