@@ -5,14 +5,21 @@ namespace NUnitTestCabInvoiceGenerator
 {
     public class Tests
     {
+        //Create instance of InvoiceService Globally
         public InvoiceService invoiceService = null;
 
+        /// <summary>
+        /// Initialise the instance of IvoiceService
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             invoiceService = new InvoiceService();
         }
 
+        /// <summary>
+        /// Given Distance and Time Returns The Total Fare
+        /// </summary>
         [Test]
         public void GivenDistanceAndTime_ShouldReturnTotalFare()
         {
@@ -22,6 +29,9 @@ namespace NUnitTestCabInvoiceGenerator
             Assert.AreEqual(25, fare);
         }
 
+        /// <summary>
+        /// Given Less Distance And Time Returns The Minimum Fare
+        /// </summary>
         [Test]
         public void GivenLessDistanceAndTime_ShouldReturnMinimumFare()
         {
@@ -31,6 +41,9 @@ namespace NUnitTestCabInvoiceGenerator
             Assert.AreEqual(5, fare);
         }
 
+        /// <summary>
+        /// Given Multiple Rides Returns the Total Number Of Rides,Total Fare (Invoice Summary)
+        /// </summary>
         [Test]
         public void GivenMultipleRides_ShouldReturnInvoiceSummary()
         {
@@ -42,6 +55,9 @@ namespace NUnitTestCabInvoiceGenerator
             Assert.AreEqual(expectedInvoiceSummary, summary);
         }
 
+        /// <summary>
+        /// Given UserId And Rides Returns the Invoice Summary
+        /// </summary>
         [Test]
         public void GivenUserIdAndRides_ShouldReturnInvoiceSummary()
         {
