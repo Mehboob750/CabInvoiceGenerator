@@ -135,6 +135,20 @@ namespace NUnitTestCabInvoiceGenerator
         }
 
         /// <summary>
+        /// Given JourneyType,UserId and No Rides returns the Invoice Summary
+        /// </summary>
+        [Test]
+        public void GivenJourneyTypeUserIdAndNoRides_ShouldReturnInvoiceSummary()
+        {
+            string userId = "abc@gmail.com";
+            Ride[] rides = { };
+            invoiceService.AddRides(userId, rides);
+            InvoiceSummary summary = invoiceService.GetInvoiceSummary(userId);
+            InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(0, 0.0);
+            Assert.AreEqual(expectedInvoiceSummary, summary);
+        }
+
+        /// <summary>
         /// Given JourneyType,UserId and number of Rides returns the Invoice Summary
         /// </summary>
         [Test]
