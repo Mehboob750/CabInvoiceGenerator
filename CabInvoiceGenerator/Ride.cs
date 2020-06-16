@@ -9,6 +9,7 @@ namespace CabInvoiceGenerator
     /// </summary>
     public class Ride
     {
+        public InvoiceService.Journey journey;
         public double distance;
         public int time;
 
@@ -17,10 +18,12 @@ namespace CabInvoiceGenerator
         /// </summary>
         /// <param name="distance">Parameter stored the total address travel</param>
         /// <param name="time">Parameter stored the time</param>
-        public Ride(double distance, int time)
+        public Ride(InvoiceService.Journey journey,double distance, int time)
         {
+            this.journey = journey;
             this.distance = distance;
             this.time = time;
         }
+
     }
 }
