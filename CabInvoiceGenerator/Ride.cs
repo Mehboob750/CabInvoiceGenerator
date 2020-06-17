@@ -8,17 +8,17 @@
         /// <summary>
         /// It contains the Type of Journey
         /// </summary>
-        private InvoiceService.Journey journey;
+        public InvoiceService.Journey journey;
 
         /// <summary>
         /// It contains the Distance
         /// </summary>
-        private double distance;
+        public double distance;
 
         /// <summary>
         /// It contains the time
         /// </summary>
-        private int time;
+        public int time;
 
         /// <summary>
         /// Parameterized Constructor to initialize the Values of New Ride

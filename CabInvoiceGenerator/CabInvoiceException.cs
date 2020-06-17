@@ -33,9 +33,13 @@
             ValueCanNotBeNull
         }
 
+       
+        public ExceptionType type
         /// <summary>
-        /// It Creates the Reference of the Exception Type
+        /// Gets or Sets Reference of the Exception Type
         /// </summary>
-        public ExceptionType type { get; set; }
+        {
+            get; set; 
+        }
     }
 }
