@@ -1,17 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CabInvoiceGenerator
+﻿namespace CabInvoiceGenerator
 {
+    using System;
+
+    /// <summary>
+    /// This Class Gives the Summary of invoice
+    /// </summary>
     public class InvoiceSummary
     {
+        /// <summary>
+        /// It stores the Number Of Rides
+        /// </summary>
         public int numberOfRides;
+
+        /// <summary>
+        /// It stores the total Fare
+        /// </summary>
         public double totalFare;
+
+        /// <summary>
+        /// It stores the average Fare
+        /// </summary>
         public double averageFare;
 
         /// <summary>
-        /// Parametrized Constructor the initialise the values 
+        /// Parameterized Constructor the initialize the values 
         /// </summary>
         /// <param name="numberOfRides">It Contains the information of Total Number Of Rides travel</param>
         /// <param name="totalFare">It Contains the Total Fare Of All Rides</param>
@@ -27,17 +39,25 @@ namespace CabInvoiceGenerator
         /// </summary>
         /// <param name="o">It is an Object Contains the information of Invoice Summary</param>
         /// <returns>It returns the Number of rides</returns>
-        public override bool Equals(Object o)
+        public override bool Equals(object o)
         {
-            //It checks for the Object
-            if (this == o) return true;
-            //It checks for object if null or object type is not equal then return false
-            if (o == null || !this.GetType().Equals(o.GetType())) return false;
-            //It Check for the Both Object And Invoice summary are Equal 
-            InvoiceSummary that = (InvoiceSummary) o;
-            return numberOfRides == that.numberOfRides &&
-                totalFare.CompareTo(that.totalFare) == 0 &&
-                averageFare.CompareTo(that.averageFare) == 0;
+            // It checks for the Object
+            if (this == o) 
+            { 
+                return true;
+            }
+
+            // It checks for object if null or object type is not equal then return false
+            if (o == null || !this.GetType().Equals(o.GetType()))
+            {
+                return false;
+            }
+
+            // It Check for the Both Object And Invoice summary are Equal 
+            InvoiceSummary that = (InvoiceSummary)o;
+            return this.numberOfRides == that.numberOfRides &&
+                this.totalFare.CompareTo(that.totalFare) == 0 &&
+                this.averageFare.CompareTo(that.averageFare) == 0;
         }
     }
 }
