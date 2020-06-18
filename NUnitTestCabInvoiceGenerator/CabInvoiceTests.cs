@@ -1,5 +1,6 @@
 namespace NUnitTestCabInvoiceGenerator
 {
+    using System;
     using CabInvoiceGenerator;
     using NUnit.Framework;
 
@@ -28,11 +29,18 @@ namespace NUnitTestCabInvoiceGenerator
         [Test]
         public void GivenDistanceAndTime_ShouldReturnTotalFare()
         {
-            double distance = 2.0;
-            int time = 5;
-            double fare = this.invoiceService.CalculateFare(InvoiceService.Journey.NORMAL, distance, time);
-            double expectedFare = 25;
-            Assert.AreEqual(expectedFare, fare);
+            try
+            {
+                double distance = 2.0;
+                int time = 5;
+                double fare = this.invoiceService.CalculateFare(InvoiceService.Journey.NORMAL, distance, time);
+                double expectedFare = 25;
+                Assert.AreEqual(expectedFare, fare);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         /// <summary>
@@ -41,11 +49,18 @@ namespace NUnitTestCabInvoiceGenerator
         [Test]
         public void GivenLessDistanceAndTime_ShouldReturnMinimumFare()
         {
-            double distance = 0.1;
-            int time = 1;
-            double fare = this.invoiceService.CalculateFare(InvoiceService.Journey.NORMAL, distance, time);
-            double expectedFare = 5;
-            Assert.AreEqual(expectedFare, fare);
+            try
+            {
+                double distance = 0.1;
+                int time = 1;
+                double fare = this.invoiceService.CalculateFare(InvoiceService.Journey.NORMAL, distance, time);
+                double expectedFare = 5;
+                Assert.AreEqual(expectedFare, fare);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         /// <summary>
@@ -54,14 +69,21 @@ namespace NUnitTestCabInvoiceGenerator
         [Test]
         public void GivenMultipleRides_ShouldReturnInvoiceSummary()
         {
-            Ride[] rides = 
-                           { 
+            try
+            {
+                Ride[] rides =
+                               {
                              new Ride(InvoiceService.Journey.NORMAL, 2.0, 5),
                              new Ride(InvoiceService.Journey.NORMAL, 0.1, 1)
                            };
-            InvoiceSummary summary = this.invoiceService.CalculateFare(rides);
-            InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30.0);
-            Assert.AreEqual(expectedInvoiceSummary, summary);
+                InvoiceSummary summary = this.invoiceService.CalculateFare(rides);
+                InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30.0);
+                Assert.AreEqual(expectedInvoiceSummary, summary);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         /// <summary>
@@ -70,16 +92,23 @@ namespace NUnitTestCabInvoiceGenerator
         [Test]
         public void GivenUserIdAndRide_ShouldReturnInvoiceSummary()
         {
-            string userId = "abc@gmail.com";
-            Ride[] rides = 
-                            { 
+            try
+            {
+                string userId = "abc@gmail.com";
+                Ride[] rides =
+                                {
                              new Ride(InvoiceService.Journey.NORMAL, 2.0, 5),
                              new Ride(InvoiceService.Journey.NORMAL, 0.1, 1)
                             };
-            this.invoiceService.AddRides(userId, rides);
-            InvoiceSummary summary = this.invoiceService.GetInvoiceSummary(userId);
-            InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30.0);
-            Assert.AreEqual(expectedInvoiceSummary, summary);
+                this.invoiceService.AddRides(userId, rides);
+                InvoiceSummary summary = this.invoiceService.GetInvoiceSummary(userId);
+                InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30.0);
+                Assert.AreEqual(expectedInvoiceSummary, summary);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         /// <summary>
@@ -88,18 +117,25 @@ namespace NUnitTestCabInvoiceGenerator
         [Test]
         public void GivenUserIdAndRides_ShouldReturnInvoiceSummary()
         {
-            string userId = "abc@gmail.com";
-            Ride[] rides = 
-                            {
+            try
+            {
+                string userId = "abc@gmail.com";
+                Ride[] rides =
+                                {
                              new Ride(InvoiceService.Journey.NORMAL, 2.0, 5), // 25
                              new Ride(InvoiceService.Journey.NORMAL, 3.0, 5), // 35
                              new Ride(InvoiceService.Journey.NORMAL, 4.0, 5), // 45
                              new Ride(InvoiceService.Journey.NORMAL, 5.0, 10) // 60
                             };
-            this.invoiceService.AddRides(userId, rides);
-            InvoiceSummary summary = this.invoiceService.GetInvoiceSummary(userId);
-            InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(4, 165.0);
-            Assert.AreEqual(expectedInvoiceSummary, summary);
+                this.invoiceService.AddRides(userId, rides);
+                InvoiceSummary summary = this.invoiceService.GetInvoiceSummary(userId);
+                InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(4, 165.0);
+                Assert.AreEqual(expectedInvoiceSummary, summary);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         /// <summary>
@@ -156,12 +192,19 @@ namespace NUnitTestCabInvoiceGenerator
         [Test]
         public void GivenJourneyTypeUserIdAndNoRides_ShouldReturnInvoiceSummary()
         {
-            string userId = "abc@gmail.com";
-            Ride[] rides = { };
-            this.invoiceService.AddRides(userId, rides);
-            InvoiceSummary summary = this.invoiceService.GetInvoiceSummary(userId);
-            InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(0, 0.0);
-            Assert.AreEqual(expectedInvoiceSummary, summary);
+            try
+            {
+                string userId = "abc@gmail.com";
+                Ride[] rides = { };
+                this.invoiceService.AddRides(userId, rides);
+                InvoiceSummary summary = this.invoiceService.GetInvoiceSummary(userId);
+                InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(0, 0.0);
+                Assert.AreEqual(expectedInvoiceSummary, summary);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         /// <summary>
@@ -170,18 +213,25 @@ namespace NUnitTestCabInvoiceGenerator
         [Test]
         public void GivenJourneyTypeUserIdAndRides_ShouldReturnInvoiceSummary()
         {
-            string userId = "abc@gmail.com";
-            Ride[] rides = 
-                            {
+            try
+            {
+                string userId = "abc@gmail.com";
+                Ride[] rides =
+                                {
                              new Ride(InvoiceService.Journey.PREMIUM, 2.0, 5), // 40
                              new Ride(InvoiceService.Journey.NORMAL, 3.0, 5), // 35
                              new Ride(InvoiceService.Journey.PREMIUM, 4.0, 5), // 70
                              new Ride(InvoiceService.Journey.NORMAL, 5.0, 10) // 60
                             };
-            this.invoiceService.AddRides(userId, rides);
-            InvoiceSummary summary = this.invoiceService.GetInvoiceSummary(userId);
-            InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(4, 205.0);
-            Assert.AreEqual(expectedInvoiceSummary, summary);
+                this.invoiceService.AddRides(userId, rides);
+                InvoiceSummary summary = this.invoiceService.GetInvoiceSummary(userId);
+                InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(4, 205.0);
+                Assert.AreEqual(expectedInvoiceSummary, summary);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

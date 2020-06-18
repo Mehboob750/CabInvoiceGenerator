@@ -30,9 +30,13 @@
             /// <summary>
             /// It is used when value is Empty
             /// </summary>
-            ValueCanNotBeNull
-        }
+            ValueCanNotBeNull,
 
+            /// <summary>
+            /// It is used for any type of Exception
+            /// </summary>
+            Exception
+        }
        
         public ExceptionType type
         /// <summary>

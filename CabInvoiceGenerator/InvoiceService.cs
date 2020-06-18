@@ -148,6 +148,10 @@
             {
                 throw new CabInvoiceException(CabInvoiceException.ExceptionType.ValueCanNotBeNull, e.Message);
             }
+            catch (Exception e)
+            {
+                throw new CabInvoiceException(CabInvoiceException.ExceptionType.Exception, e.Message);
+            }
         }
 
         /// <summary>
