@@ -1,4 +1,12 @@
-﻿namespace CabInvoiceGenerator
+﻿//-----------------------------------------------------------------------
+// <copyright file="InvoiceService.cs" company="BridgeLabz Solution">
+//  Copyright (c) BridgeLabz Solution. All rights reserved.
+// </copyright>
+// <author>Mehboob Shaikh</author>
+//-----------------------------------------------------------------------
+[module: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:FileHeaderFileNameDocumentationMustMatchTypeName", Justification = "Reviewed.")]
+
+namespace CabInvoiceGenerator
 {
     using System;
 
@@ -10,45 +18,37 @@
         /// <summary>
         /// It contains the value of Normal Ride Minimum cost per Kilometer
         /// </summary>
-        public static readonly int MinimumCostPerKiloMeter = 10;
+        private readonly int minimumCostPerKiloMeter = 10;
 
         /// <summary>
         /// It contains the value of Normal Ride Cost Per Time
         /// </summary>
-        public static readonly int CostPerTime = 1;
+        private readonly int costPerTime = 1;
 
         /// <summary>
         /// It contains the value of Normal Ride Minimum Fare
         /// </summary>
-        public static readonly double MinimumFare = 5;
+        private readonly double minimumFare = 5;
 
         /// <summary>
         /// It contains the value of Premium Ride cost per Kilometer
         /// </summary>
-        public static readonly int PremiumMinimumCostPerKiloMeter = 15;
+        private readonly int premiumMinimumCostPerKiloMeter = 15;
 
         /// <summary>
         /// It contains the value of Premium Ride Cost per Time
         /// </summary>
-        public static readonly int PremiumCostPerTime = 2;
+        private readonly int premiumCostPerTime = 2;
 
         /// <summary>
         /// It contains the value of Premium Ride Minimum Fare
         /// </summary>
-        public static readonly double PremiumMinimumFare = 20;
+        private readonly double premiumMinimumFare = 20;
 
         /// <summary>
         /// It Creates the reference of the RideRepository
         /// </summary>
         private RideRepository rideRepository;
-
-        /// <summary>
-        /// Initializes a new Instance of RideRepository
-        /// </summary>
-        public InvoiceService()
-        {
-            this.rideRepository = new RideRepository();
-        }
 
         /// <summary>
         /// Enum is used to define Enumerated data types
@@ -75,10 +75,10 @@
         public double CalCalculateFareForNormalRide(double distance, int time)
         {
             // It Calculates The Total Fare Of the Normal Ride
-            double totalFare = distance * MinimumCostPerKiloMeter + time * CostPerTime;
+            double totalFare = distance * this.minimumCostPerKiloMeter + time * this.costPerTime;
 
             // Math.Max function is Used To Return the Minimum Fare if the Fare is minimum than Particular limit
-            return Math.Max(totalFare, MinimumFare);
+            return Math.Max(totalFare, this.minimumFare);
         }
 
         /// <summary>
@@ -90,10 +90,10 @@
         public double CalCalculateFareForPremiumRide(double distance, int time)
         {
             // It Calculates The Total Fare Of the Premium Ride
-            double totalFare = distance * PremiumMinimumCostPerKiloMeter + time * PremiumCostPerTime;
+            double totalFare = distance * this.premiumMinimumCostPerKiloMeter + time * this.premiumCostPerTime;
 
             // Math.Max function is Used To Return the Minimum Fare if the Fare is minimum than Particular limit
-            return Math.Max(totalFare, PremiumMinimumFare);
+            return Math.Max(totalFare, this.premiumMinimumFare);
         }
 
         /// <summary>

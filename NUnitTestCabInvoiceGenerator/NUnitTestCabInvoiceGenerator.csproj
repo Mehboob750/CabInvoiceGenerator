@@ -16,4 +16,11 @@
     <ProjectReference Include="..\CabInvoiceGenerator\CabInvoiceGenerator.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="CabInvoiceTests.cs">
+      <ExcludeFromSourceAnalysis>True</ExcludeFromSourceAnalysis>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+  </ItemGroup>
+
 </Project>

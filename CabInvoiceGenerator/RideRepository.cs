@@ -1,4 +1,12 @@
-﻿namespace CabInvoiceGenerator
+﻿//-----------------------------------------------------------------------
+// <copyright file="RideRepository.cs" company="BridgeLabz Solution">
+//  Copyright (c) BridgeLabz Solution. All rights reserved.
+// </copyright>
+// <author>Mehboob Shaikh</author>
+//-----------------------------------------------------------------------
+[module: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:FileHeaderFileNameDocumentationMustMatchTypeName", Justification = "Reviewed.")]
+
+namespace CabInvoiceGenerator
 {
     using System.Collections.Generic;
 
@@ -10,7 +18,7 @@
         /// <summary>
         /// Dictionary is used to store the values in key value pair,key is userId and value is number of rides
         /// </summary>
-        public Dictionary<string, List<Ride>> userRides = null;
+        private Dictionary<string, List<Ride>> userRides = null;
 
         /// <summary>
         /// Default constructor

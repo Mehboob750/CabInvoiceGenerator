@@ -1,4 +1,12 @@
-﻿namespace CabInvoiceGenerator
+﻿//-----------------------------------------------------------------------
+// <copyright file="Ride.cs" company="BridgeLabz Solution">
+//  Copyright (c) BridgeLabz Solution. All rights reserved.
+// </copyright>
+// <author>Mehboob Shaikh</author>
+//-----------------------------------------------------------------------
+[module: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:FileHeaderFileNameDocumentationMustMatchTypeName", Justification = "Reviewed.")]
+
+namespace CabInvoiceGenerator
 {
     /// <summary>
     /// This Class is used to initialize new Ride
